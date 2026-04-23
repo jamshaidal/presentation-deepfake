@@ -1,0 +1,6 @@
+.vercel
+node_modules/
+dist/
+.chrome-headless/
+__pycache__/
+*.log

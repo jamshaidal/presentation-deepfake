@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: deepfake-model-api
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn local_inference_server:app
+    healthCheckPath: /health
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.10
+      - key: MODEL_PATH
+        value: /opt/render/project/src/baseline_ffpp_94.pth
+      - key: MODEL_THRESHOLD
+        value: "0.5"
+      - key: MODEL_POSITIVE_CLASS
+        value: fake
