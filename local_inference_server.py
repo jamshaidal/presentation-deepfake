@@ -3,6 +3,10 @@ import os
 import time
 from pathlib import Path
 
+os.environ.setdefault("OMP_NUM_THREADS", "1")
+os.environ.setdefault("MKL_NUM_THREADS", "1")
+os.environ.setdefault("TORCH_NUM_THREADS", "1")
+
 import timm
 import torch
 from flask import Flask, jsonify, request
@@ -18,6 +22,8 @@ THRESHOLD = float(os.getenv("MODEL_THRESHOLD", "0.5"))
 POSITIVE_CLASS = os.getenv("MODEL_POSITIVE_CLASS", "fake").strip().lower()
 
 device = torch.device("cpu")
+torch.set_num_threads(int(os.getenv("TORCH_NUM_THREADS", "1")))
+torch.set_num_interop_threads(1)
 
 transform = transforms.Compose(
     [
@@ -39,7 +45,7 @@ def build_model():
 
 def warm_up_model(model):
     dummy_input = torch.zeros((1, 3, 224, 224), device=device)
-    with torch.no_grad():
+    with torch.inference_mode():
         model(dummy_input)
 
 
@@ -68,10 +74,19 @@ def health():
     )
 
 
-@app.route("/predict", methods=["POST", "OPTIONS"])
+@app.route("/predict", methods=["GET", "POST", "OPTIONS"])
 def predict():
     if request.method == "OPTIONS":
         return ("", 204)
+
+    if request.method == "GET":
+        return jsonify(
+            {
+                "message": "Prediction endpoint is ready. Send a POST request with an image file under field name 'image'.",
+                "method": "POST",
+                "field": "image",
+            }
+        )
 
     uploaded = request.files.get("image")
     if uploaded is None:
@@ -86,10 +101,14 @@ def predict():
     except Exception as exc:
         return jsonify({"error": f"Could not read image: {exc}"}), 400
 
+    print(
+        f"Prediction request: filename={uploaded.filename}, bytes={len(image_bytes)}, size={image.size}",
+        flush=True,
+    )
     tensor = transform(image).unsqueeze(0).to(device)
 
     start = time.perf_counter()
-    with torch.no_grad():
+    with torch.inference_mode():
         logit = model(tensor).squeeze().item()
         fake_score = torch.sigmoid(torch.tensor(logit)).item()
     processing_ms = round((time.perf_counter() - start) * 1000)
@@ -103,6 +122,10 @@ def predict():
     label = "Fake" if fake_score >= THRESHOLD else "Real"
     confidence = fake_score if label == "Fake" else real_score
 
+    print(
+        f"Prediction complete: label={label}, confidence={confidence:.4f}, processingMs={processing_ms}",
+        flush=True,
+    )
     return jsonify(
         {
             "label": label,

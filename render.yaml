@@ -15,3 +15,9 @@ services:
         value: "0.5"
       - key: MODEL_POSITIVE_CLASS
         value: fake
+      - key: TORCH_NUM_THREADS
+        value: "1"
+      - key: OMP_NUM_THREADS
+        value: "1"
+      - key: MKL_NUM_THREADS
+        value: "1"
