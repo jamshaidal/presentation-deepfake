@@ -37,7 +37,14 @@ def build_model():
     return model
 
 
+def warm_up_model(model):
+    dummy_input = torch.zeros((1, 3, 224, 224), device=device)
+    with torch.no_grad():
+        model(dummy_input)
+
+
 model = build_model()
+warm_up_model(model)
 app = Flask(__name__)
 
 
