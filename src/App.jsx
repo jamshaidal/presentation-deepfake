@@ -170,8 +170,8 @@ function App() {
     <main className="app-shell">
       <section className="upload-page">
         <div className="upload-card">
-          <p className="eyebrow">Deepfake Image Detector</p>
-          <h1>Upload image</h1>
+          <p className="eyebrow">Using EfficientNet-B0</p>
+          <h1>Cross-Dataset Deepfake Detection</h1>
 
           <div
             className={`drop-zone ${previewUrl ? "has-image" : ""} ${isDragging ? "dragging" : ""}`}
@@ -212,7 +212,7 @@ function App() {
 
           <div className="button-row">
             <button type="button" className="secondary-button" onClick={() => fileInputRef.current?.click()}>
-              Choose image
+              Upload image
             </button>
             <button
               type="button"
