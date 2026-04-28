@@ -170,7 +170,10 @@ function App() {
     <main className="app-shell">
       <section className="upload-page">
         <div className="upload-card">
-          <h1>Cross-Dataset Deepfake Detection</h1>
+          <h1>
+            Cross Dataset Generalization, Few Shot Adaptation, and Robustness Analysis of an
+            EfficientNet-B0 Deep Fake Detector
+          </h1>
 
           <div
             className={`drop-zone ${previewUrl ? "has-image" : ""} ${isDragging ? "dragging" : ""}`}
