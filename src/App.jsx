@@ -170,7 +170,6 @@ function App() {
     <main className="app-shell">
       <section className="upload-page">
         <div className="upload-card">
-          <p className="eyebrow">Using EfficientNet-B0</p>
           <h1>Cross-Dataset Deepfake Detection</h1>
 
           <div

@@ -89,15 +89,15 @@ button {
 
 .upload-page,
 .result-page {
-  width: min(100%, 720px);
+  width: min(100%, 620px);
 }
 
 .upload-card,
 .result-card {
   width: 100%;
-  padding: clamp(1rem, 4vw, 2rem);
+  padding: clamp(1rem, 3vw, 1.55rem);
   border: 1px solid var(--line);
-  border-radius: 2rem;
+  border-radius: 1.55rem;
   background: rgba(255, 255, 255, 0.9);
   box-shadow: var(--shadow);
   backdrop-filter: blur(18px);
@@ -113,15 +113,16 @@ button {
 }
 
 h1 {
-  margin: 0.5rem 0 1.2rem;
+  max-width: 12rem;
+  margin: 0 0 1rem;
   font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(2.6rem, 7.5vw, 5.5rem);
-  line-height: 0.92;
-  letter-spacing: -0.06em;
+  font-size: clamp(2.05rem, 5.2vw, 3.8rem);
+  line-height: 0.96;
+  letter-spacing: -0.045em;
 }
 
 .drop-zone {
-  min-height: 390px;
+  min-height: 300px;
   display: grid;
   place-items: center;
   overflow: hidden;
@@ -149,7 +150,7 @@ h1 {
 .drop-zone img {
   display: block;
   width: 100%;
-  max-height: 520px;
+  max-height: 390px;
   object-fit: contain;
 }
 
@@ -161,7 +162,7 @@ h1 {
 
 .drop-zone strong {
   color: var(--ink);
-  font-size: 1.4rem;
+  font-size: 1.18rem;
 }
 
 .drop-zone span,
@@ -188,15 +189,15 @@ h1 {
   display: flex;
   justify-content: center;
   gap: 0.8rem;
-  margin-top: 1.2rem;
+  margin-top: 1rem;
   flex-wrap: wrap;
 }
 
 .primary-button,
 .secondary-button {
-  min-width: 10rem;
-  min-height: 3.2rem;
-  padding: 0.85rem 1.3rem;
+  min-width: 9rem;
+  min-height: 2.85rem;
+  padding: 0.72rem 1.1rem;
   border-radius: 999px;
   cursor: pointer;
   font-weight: 800;
@@ -237,7 +238,7 @@ h1 {
 
 .result-image {
   width: 100%;
-  max-height: 480px;
+  max-height: 360px;
   object-fit: contain;
   border-radius: 1.4rem;
   background: #0f191d;
@@ -270,7 +271,7 @@ h1 {
   display: block;
   margin-top: 0.25rem;
   font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(3.5rem, 12vw, 7rem);
+  font-size: clamp(2.8rem, 9vw, 5.4rem);
   line-height: 0.9;
   letter-spacing: -0.06em;
 }
@@ -312,7 +313,7 @@ h1 {
   }
 
   .drop-zone {
-    min-height: 320px;
+    min-height: 260px;
   }
 
   .button-row,
