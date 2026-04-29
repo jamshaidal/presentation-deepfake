@@ -6,4 +6,6 @@ vite-dev.log
 vite-dev-live.log
 vite-dev-5174.log
 local_inference_server.py
+requirements.txt
+render.yaml
 docs
