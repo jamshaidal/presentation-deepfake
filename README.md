@@ -11,9 +11,9 @@ This repository supports my research communication work. It is designed to prese
 - What deepfakes are and why detection matters
 - Challenges in synthetic media forensics
 - Machine learning approaches for detection
-- Transformer-based and computer vision methods
+- Transformer-based methods for visual media analysis
+- CNN architectures for image and video classification
 - Evaluation metrics for detection systems
-- Future direction: federated learning for privacy-preserving deepfake detection
 
 ## Skills Demonstrated
 
@@ -26,4 +26,4 @@ This repository supports my research communication work. It is designed to prese
 
 Muhammad Jamshaid Ali
 
-AI researcher focused on federated learning, deepfake detection, and trustworthy machine learning systems.
+AI researcher focused on deepfake detection, Transformer models, CNN architectures, and trustworthy machine learning systems.
